@@ -1,0 +1,231 @@
+html
+{
+    font-family: "Open Sans", sans-serif;
+    
+}
+*
+{
+    border: none;
+    margin:0;
+    padding:0;
+}
+body
+{
+    margin:0;
+    background-color: rgb(33, 33, 33);
+    color:white;
+    
+}
+.wave_hi
+{
+    display: inline-block;
+}
+.wave_hi:hover
+{
+    animation: wave 200ms linear infinite;
+    transform-origin: center;
+}
+@keyframes wave {
+    0% {
+      transform: rotate( 0.0deg) ;
+    }
+    50% {
+      transform: rotate(14.0deg) ;
+    }
+    100% {
+        transform: rotate( 0.0deg) ;
+      }
+}
+.heading
+{
+    margin-bottom: 2rem;
+    animation:drop-down 1s ease-out forwards;
+}
+@keyframes drop-down {
+    
+    0%
+    {
+        transform:  translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform:  translateY(0);
+        opacity: 1;
+    }
+}
+.delay_1s
+{
+    animation-delay: 1s !important;
+}
+.delay_3s
+{
+    animation-delay: 3s !important;
+}
+.typ_anim
+{
+    animation: typing 2s linear forwards;
+    white-space: nowrap;
+    border-right: 3px solid grey;
+    overflow: hidden;
+    width:0;
+}
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blinkTextCursor {
+    from {
+      border-right-color: white;
+    }
+    to {
+      border-right-color: transparent;
+    }
+  }
+section
+{
+    min-height: 80vh;
+    position: relative;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    padding: 100px 20vw;
+    
+}
+
+.me
+{
+    position: absolute;
+    transform:  translateY(-100vh);
+    right:5rem;
+    animation:drop-in 2.5s ease-out forwards;
+    animation-delay: 4s;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes drop-in {
+    0%
+    {
+        transform:  translateY(-100vh);
+        border-radius: 50% 50% 47% 53% / 29% 28% 72% 71%  ;
+    }
+    60%
+    {
+        border-radius: 50% 50% 47% 53% / 29% 28% 72% 71%  ;
+    }
+    100%{
+        transform:  translateY(-5rem);
+        border-radius: 50% 50% 39% 61% / 45% 47% 53% 55% ;
+    }
+}
+.bord_curv
+{
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.blue
+{
+    background-color: rgb(0, 0, 255);
+}
+.cyan
+{
+    background-color: rgb(15, 119, 119);
+}
+.green
+{
+    background-color: rgb(10, 150, 83);
+}
+.red
+{
+    background-color: red;
+}
+.black
+{
+    background-color: black;
+}
+
+
+
+.custom_curv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    transform: rotate(0) translateY(80vh);
+}
+
+.custom_curv svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 217px;
+}
+
+.custom_curv .shape-fill {
+    fill: black;
+}
+h1
+{
+    font-size: 3.5rem;
+}
+
+#lw
+{
+    background:url("./layered-waves-haikei.svg"); 
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+
+.bot_round
+{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.custom-shape-divider-top-1685290377 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1685290377 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 138px;
+}
+
+.custom-shape-divider-top-1685290377 .shape-fill {
+    fill: #212121;
+}
+
+.custom-shape-divider-bottom-1685290547 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1685290547 svg {
+    position: relative;
+    display: block;
+    width: calc(105% + 1.3px);
+    height: 241px;
+}
+
+.custom-shape-divider-bottom-1685290547 .shape-fill {
+    fill: #212121;
+}
