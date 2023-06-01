@@ -127,7 +127,7 @@ section
     position: absolute;
     transform:  translateY(-1600px);
     right:5rem;
-    animation:drop-in 2.5s ease-out forwards;
+    animation:drop-in 2.5s ease-out forwards, wobble 22s linear infinite;
     animation-delay: 3s;
     animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
     transition-property: scale;
@@ -285,6 +285,7 @@ h1
 #proj_grid::-webkit-scrollbar-track {
     background-color: #073838;
     border-radius: 20px;
+    scroll-padding-left: 20px;
 }
 .card
 {
@@ -294,11 +295,30 @@ h1
     text-align: center;
     padding:5rem 5rem;
     margin-right:1rem;
-    margin-left:2rem;
+    margin-left:1rem;
     z-index: -1;
     transition: transform 200ms ease-in-out;
+    animation: wobble 12s linear infinite;
 }
-
+#blob_anim
+{
+    animation: wobble 12s ease-in-out infinite;
+}
+@keyframes wobble
+{
+    0%
+    {
+        border-radius: 30% 70% 70% 30% / 59% 31% 69% 41% ;
+    }
+    50%
+    {
+        border-radius: 84% 16% 41% 59% / 22% 30% 70% 78%    ;
+    }
+    100%
+    {
+        border-radius: 30% 70% 70% 30% / 59% 31% 69% 41% ;
+    }
+}
 
 .card:hover
 {
@@ -308,17 +328,24 @@ h1
 {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
 }
 .social
 {
-    width: 15rem;
-    height: 15rem;
+    width: 10rem;
+    height: 10rem;
     margin: 0 1rem;
-    transition: scale 200ms ease-in-out;
+    transition: transform 200ms ease-in-out;
+}
+#reach_me:hover .social:not(:hover)
+{
+    transform: scale(0.9);
 }
 .social:hover
 {
-    scale: 1.1;
+    transform: scale(1.15) translateY(-1rem);
 }
 #blob
 {
