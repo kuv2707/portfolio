@@ -14,7 +14,11 @@ html
     text-decoration: none;
     color: white;
 }
-
+*::selection
+{
+    background-color: rgb(110, 110, 110);
+    border-radius: 10px;
+}
 body
 {
     margin:0;
@@ -33,7 +37,7 @@ body
 .wave_hi
 {
     display: inline-block;
-    transition-property: scale;
+    transition-property: scale,translate;
     transition-duration: 200ms;
 }
 .wave_hi:hover
@@ -41,6 +45,7 @@ body
     animation: wave 200ms linear infinite;
     transform-origin: center;
     scale:1.9;
+    translate: 15px;
 }
 @keyframes wave {
     0% {
@@ -70,27 +75,11 @@ h1
         opacity: 1;
     }
 }
-.delay_1s
-{
-    animation-delay: 1s !important;
-}
-.delay_3s
-{
-    animation-delay: 3s !important;
-}
-.delay_5s
-{
-    animation-delay: 5s !important;
-}
-.delay_7s
-{
-    animation-delay: 7s !important;
-}
 .typ_anim
 {
     animation: typing 2s linear forwards;
+    animation-delay: var(--animDelay);
     white-space: nowrap;
-    border-right: 3px solid grey;
     overflow: hidden;
     width:0;
 }
@@ -121,7 +110,6 @@ section
     padding: 100px 20vw;
     
 }
-
 .me
 {
     position: absolute;
@@ -142,15 +130,15 @@ section
     0%
     {
         transform:  translateY(-1600px);
-        border-radius: 50% 50% 47% 53% / 29% 28% 72% 71%  ;
+        /* border-radius: 19% 81% 24% 76% / 64% 52% 48% 36%   ; */
     }
     60%
     {
-        border-radius: 50% 50% 47% 53% / 29% 28% 72% 71%  ;
+        /* border-radius: 59% 41% 41% 59% / 43% 30% 70% 57%   ; */
     }
     100%{
         transform:  translateY(-8rem);
-        border-radius: 50% 50% 39% 61% / 45% 47% 53% 55% ;
+        /* border-radius: 19% 81% 24% 76% / 64% 52% 48% 36%  ; */
     }
 }
 .bord_curv
@@ -160,17 +148,18 @@ section
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
-.blue
+
+.frontend_projs
 {
-    background-color: rgb(0, 0, 255);
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    margin-bottom: 4rem;
 }
-.cyan
-{
-    background-color: rgb(15, 119, 119);
-}
+
+
 .green
 {
-    background-color: rgb(10, 80, 150);
+    background-color: rgb(45, 45, 45);
 }
 .favcol
 {
@@ -180,8 +169,29 @@ section
 {
     background-color: black;
 }
-
-
+.tech_stacks
+{
+    min-height: 120vh;
+}
+.tech_stack_container
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: -10rem ;
+    margin-right: -10rem;
+}
+.tech_stack
+{
+    width:200px;
+    height:200px;
+    background-color: white;
+    animation: wobble 12s linear infinite;
+    padding:5rem 5rem;
+    margin:2rem 2rem;
+    background-image: linear-gradient(45deg,var(--c1) 20%,var(--c2) 100%);
+    transform: translateY(var(--altitude));
+    
+}
 
 .custom_curv {
     position: absolute;
@@ -189,7 +199,7 @@ section
     left: 0;
     width: 100%;
     overflow: hidden;
-    transform: rotate(0) translateY(80vh);
+    transform: rotate(0) translateY(120vh);
 }
 
 .custom_curv svg {
@@ -308,15 +318,15 @@ h1
 {
     0%
     {
-        border-radius: 30% 70% 70% 30% / 59% 31% 69% 41% ;
+        border-radius: 49% 51% 50% 50% / 34% 52% 48% 66%  ;
     }
     50%
     {
-        border-radius: 84% 16% 41% 59% / 22% 30% 70% 78%    ;
+        border-radius: 49% 51% 24% 76% / 64% 52% 48% 36%      ;
     }
     100%
     {
-        border-radius: 30% 70% 70% 30% / 59% 31% 69% 41% ;
+        border-radius: 49% 51% 50% 50% / 34% 52% 48% 66%  ;
     }
 }
 
