@@ -3,6 +3,10 @@ html
     font-family: "Open Sans", sans-serif;
     
 }
+:root
+{
+    --techStackHt:150vh;
+}
 *
 {
     border: none;
@@ -171,14 +175,21 @@ section
 }
 .tech_stacks
 {
-    min-height: 120vh;
+    min-height: var(--techStackHt);
+}
+.tech_stack_container_fut
+{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-left: -10rem ;
+    margin-right: -10rem;
 }
 .tech_stack_container
 {
-    display: flex;
-    flex-direction: row;
-    margin-left: -10rem ;
-    margin-right: -10rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* margin-left: -10rem ;
+    margin-right: -10rem; */
 }
 .tech_stack
 {
@@ -187,10 +198,26 @@ section
     background-color: white;
     animation: wobble 12s linear infinite;
     padding:5rem 5rem;
-    margin:2rem 2rem;
+    /* margin-left: -10rem; */
     background-image: linear-gradient(45deg,var(--c1) 20%,var(--c2) 100%);
     transform: translateY(var(--altitude));
-    
+}
+.tech_stacks .tech_stack *
+{
+    height:150px;
+    left:50%;
+    transform: translateX(-25%) translateY(-25%);
+    padding-left: 0;
+}
+.tech_stack *
+{
+    height:200px;
+}
+.tech_stacks .tech_stack
+{
+    height:80px;
+    width:80px;
+    /* margin-left: 2rem; */
 }
 
 .custom_curv {
@@ -199,7 +226,7 @@ section
     left: 0;
     width: 100%;
     overflow: hidden;
-    transform: rotate(0) translateY(120vh);
+    transform: rotate(0) translateY(var(--techStackHt));
 }
 
 .custom_curv svg {
