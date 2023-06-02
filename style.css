@@ -141,7 +141,7 @@ section
         /* border-radius: 59% 41% 41% 59% / 43% 30% 70% 57%   ; */
     }
     100%{
-        transform:  translateY(-8rem);
+        transform:  translateY(-16rem);
         /* border-radius: 19% 81% 24% 76% / 64% 52% 48% 36%  ; */
     }
 }
