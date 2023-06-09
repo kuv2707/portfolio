@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <section id="lw" class="bot_round">
+    <section id="section_intro" class="bot_round">
         <h1 class="heading">Hi there!<span class="wave_hi">👋</span></h1>
         <div style="width:8rem"><p style='--animDelay:1s;' class="typ_anim">I'm Kislay Verma,</p></div>
         <div style="width:31.1rem"><p style='--animDelay:3s;' class="typ_anim">An engineering fresher at IIT(BHU), and a programming aficionado.</p></div>
@@ -26,6 +26,7 @@
     </section>
 
     <section class="tech_stacks">
+        
         <h1>My Tech Stack</h1>
         <p>Before getting into Web Development, I coded in Java for a while. I also learned C++ for Competitive Programming.</p>
         <div class="tech_stack_container" style="--c2:#525353;--c1:rgb(55, 55, 55);">
@@ -41,9 +42,9 @@
             <div class="tech_stack" style="--altitude:0rem;">
                 <img src="Images/node.svg" title="NodeJS" alt="node">
             </div>
-            <div class="tech_stack" style="--altitude:0rem;">
+            <!-- <div class="tech_stack" style="--altitude:0rem;">
                 <img src="Images/express.svg" title="ExpressJS" alt="express">
-            </div>
+            </div> -->
             <div class="tech_stack" style="--altitude:0rem;">
                 <img src="Images/mongodb.svg" title="MongoDB" alt="MongoDB">
             </div>
@@ -68,7 +69,7 @@
     
     <section class="frontend_projs black">
         <h1>My frontend projects</h1>
-        <p>Although i am mainly into backend development, a plethora of whose projects can be found on my github, here are some simple frontend projects i have made</p>
+        <p>Although i am mainly into backend development, a plethora of projects can be found on my github, here are some simple frontend projects i have made</p>
         <div id="proj_grid">
             <a href="https://kuv2707.github.io/spaceShoot/" target="_blank">
                 <div class="card">
@@ -100,25 +101,28 @@
             </a>
         </div>
     </section>
-    <!-- <section class="favcol bord_curv" >
+    <section class="copsanim">
+        <h1>A little something I made...</h1>
+        <canvas class="anim"></canvas>
+    </section>
+    <section class="bgcol212121" id="blob_anim">
         
-    </section> -->
-    <section class="green" id="blob_anim">
         <h1>Future plans</h1>
         <p>I'll be spending my upcoming days learning these</p>
         <div class="tech_stack_container_fut" style="--c1:black;--c2:rgb(63, 215, 232);">
-            <div class="tech_stack" style="--altitude:2rem;">
+            <div class="tech_stack fut_tech" style="--altitude:2rem;">
                 <img src="Images/react.svg" title="ReactJS" alt="react">
             </div>
-            <div class="tech_stack" style="--altitude:0rem;">
+            <div class="tech_stack fut_tech" style="--altitude:0rem;">
                 <img src="Images/ts.svg" title="TypeScript" alt="ts">
             </div>
-            <div class="tech_stack" style="--altitude:-6rem;">
+            <div class="tech_stack fut_tech" style="--altitude:-6rem;">
                 <img src="Images/flutter.svg" title="Flutter" alt="flutter">
             </div>
         </div>
     </section>
-    <section id="blob">
+    
+    <section id="section_social">
         <h1>Get in touch with me</h1>
         <div id="reach_me">
             <a href="https://github.com/kuv2707/" target="_blank">
@@ -141,6 +145,7 @@
             </a>
         </div>
     </section>
-    
+    <script src="./scripts/intersect.js"></script>
+    <script src="./scripts/COPS_anim.js"></script>
 </body>
 </html>

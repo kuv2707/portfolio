@@ -3,15 +3,23 @@ html
     font-family: "Open Sans", sans-serif;
     
 }
+@media only screen and (max-width: 600px) {
+    html
+    {
+        font-size: 12px;
+    }
+}
 :root
 {
-    --techStackHt:160vh;
+    --techStackHt:125vh;
 }
 *
 {
     border: none;
     margin:0;
     padding:0;
+    transition: all .5s;
+    user-select: none;
 }
 *:link,:visited
 {
@@ -28,6 +36,7 @@ body
     margin:0;
     background-color: rgb(33, 33, 33);
     color:white;
+    overflow-x: hidden;
 }
 ::-webkit-scrollbar
 {
@@ -65,6 +74,11 @@ body
 h1
 {
     margin-bottom: 2rem;
+    /* color:#212121; */
+    opacity:0;
+}
+.drop_down_anim
+{
     animation:drop-down 1s ease-out forwards;
 }
 @keyframes drop-down {
@@ -112,14 +126,14 @@ section
     flex-direction: column;
     align-items: center; */
     padding: 100px 20vw;
-    
+    overflow: hidden ;
 }
 .me
 {
     position: absolute;
     transform:  translateY(-1600px);
     right:5rem;
-    animation:drop-in 2.5s ease-out forwards, wobble 22s linear infinite;
+    animation:drop-in 2.5s ease-out forwards, wobble 10s linear infinite;
     animation-delay: 3s;
     animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
     transition-property: scale;
@@ -161,7 +175,7 @@ section
 }
 
 
-.green
+.bgcol212121
 {
     background-color: rgb(45, 45, 45);
 }
@@ -184,43 +198,56 @@ section
     margin-left: -10rem ;
     margin-right: -10rem;
 }
-.tech_stack_container
-{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    margin-top:2rem;
-    /* margin-left: -10rem ;
-    margin-right: -10rem; */
+
+@media only screen and (max-width: 600px) {
+    .tech_stack_container_fut
+    {
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        grid-template-columns: 0;
+        margin-left: -10rem ;
+        margin-right: -10rem;
+    }
 }
+
+@media only screen and (min-width: 600px) {
+    .tech_stack_container_fut
+    {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        margin-left: -10rem ;
+        margin-right: -10rem;
+    }
+}
+.tech_stack_container
+    {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top:2rem;
+        /* margin-left: -10rem ;
+        margin-right: -10rem; */
+    }
 .tech_stack
 {
-    width:200px;
-    height:200px;
+    width:8vw;
+    height:8vw;
     background-color: white;
     animation: wobble 12s linear infinite;
-    padding:5rem 5rem;
+    padding:2vw 5vh;
     /* margin-left: -10rem; */
     background-image: linear-gradient(45deg,var(--c1) 20%,var(--c2) 100%);
     transform: translateY(var(--altitude));
 }
 .tech_stacks .tech_stack *
 {
-    height:150px;
+    height:5vw;
+    position: absolute;
     left:50%;
-    transform: translateX(-25%) translateY(-25%);
+    top:50%;
+    transform: translateX(-50%) translateY(-50%);
     padding-left: 0;
+    transition: border-radius 200ms ease-out;
 }
-.tech_stack *
-{
-    height:200px;
-}
-.tech_stacks .tech_stack
-{
-    height:80px;
-    width:80px;
-    /* margin-left: 2rem; */
-}
-
 .custom_curv {
     position: absolute;
     top: 0;
@@ -254,7 +281,7 @@ h1
     z-index: -1;
 }
 
-#lw
+#section_intro
 {
     background-image: url("./Images/layered-waves-haikei.svg");
     background-repeat: no-repeat;
@@ -325,6 +352,21 @@ h1
     border-radius: 20px;
     scroll-padding-left: 20px;
 }
+.fut_tech
+{
+    width:15vw;
+    height:15vw;
+}
+.fut_tech img
+{
+    height:70%;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    object-fit: contain;
+}
 .card
 {
     margin:4rem 3rem;
@@ -366,10 +408,13 @@ h1
 {
     display: flex;
     flex-direction: row;
-    position: absolute;
-    left:50%;
-    transform: translateX(-50%);
+    padding-top:30px;
+    padding-bottom:30px;
+    overflow-x: scroll;
+    border-radius: 3px;
+    
 }
+
 .social
 {
     width: 10rem;
@@ -385,8 +430,15 @@ h1
 {
     transform: scale(1.15) translateY(-1rem);
 }
-#blob
+#section_social
 {
     min-height: 200px;
-    height:200px;
+    
+}
+
+.anim
+{
+    left:-100px;
+    top:50px;
+    position: absolute;
 }
