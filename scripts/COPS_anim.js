@@ -1,3 +1,5 @@
+//this idea is inspired by COPS website
+
 let canvas=document.querySelector(".anim")
 
 let g=canvas.getContext("2d")
@@ -8,7 +10,7 @@ window.addEventListener("resize",function()
     h=canvas.height=window.innerHeight
 })
 const BLOCK_SIZE=160
-const N_PTS=150
+const N_PTS=100
 const COUPLING_RADIUS=100
 let w=canvas.width=window.innerWidth+100
 let h=canvas.height=window.innerHeight
@@ -105,7 +107,10 @@ function painter()
         g.arc(point.x,point.y,point.rad,0,Math.PI*2)
         g.fill()
     })
-    
+    // g.strokeStyle="white"
+    // g.beginPath()
+    //     g.arc(mouseloc.x,mouseloc.y,COUPLING_RADIUS,0,Math.PI*2)
+    //     g.stroke()
     window.requestAnimationFrame(painter)
 }
 painter()
@@ -117,8 +122,9 @@ function updatePoints()
             area[Math.floor(point.x/BLOCK_SIZE)][Math.floor(point.y/BLOCK_SIZE)].delete(point)
         }
         catch(e){}
-        point.x+=point.vx;
-        point.y+=point.vy;
+        if(point.interval==undefined)
+        {point.x+=point.vx
+        point.y+=point.vy}
         if(point.x>w||point.x<0)
         {
             point.vx=-point.vx;
@@ -127,22 +133,24 @@ function updatePoints()
         {
             point.vy=-point.vy;
         }
-        //results of some vector math i did
-        let a=Math.pow(point.vx,2)+Math.pow(point.vy,2)
-        let b=2* (  point.vx*(point.x-mouseloc.x)  +  point.vy*(point.y-mouseloc.y)  )
-        let c=-Math.pow(COUPLING_RADIUS,2)
-        let r1=(-b+Math.pow(b*b-4*a*c,0.5))/(2*a)
-        let r2=(-b-Math.pow(b*b-4*a*c,0.5))/(2*a)
-        let r
-        if(Math.abs(r1)<Math.abs(r2))
-        r=r1
-        else
-        r=r2
         if(dist(mouseloc,point)<COUPLING_RADIUS)
         {
+            //results of some vector math i did
+            let a=Math.pow(point.vx,2)+Math.pow(point.vy,2)
+            let b=2* (  point.vx*(point.x-mouseloc.x)  +  point.vy*(point.y-mouseloc.y)  )
+            let c=Math.pow(point.x-mouseloc.x,2)+Math.pow(point.y-mouseloc.y,2)-Math.pow(COUPLING_RADIUS+5,2)
+            let r1=(-b+Math.pow(b*b-4*a*c,0.5))/(2*a)
+            let r2=(-b-Math.pow(b*b-4*a*c,0.5))/(2*a)
+            let r
+            if(Math.abs(r1)<Math.abs(r2))
+            r=r1
+            else
+            r=r2
+            let newloc={x:point.x+r*point.vx,y:point.y+r*point.vy}
+            interpolate(point,{...point},newloc)
+            // point.x=point.x+r*point.vx
+            // point.y=point.y+r*point.vy
 
-            point.x=point.x+r*point.vx
-            point.y=point.y+r*point.vy
             point.vx=-point.vx
             point.vy=-point.vy
         }
@@ -158,4 +166,23 @@ function updatePoints()
 function dist(point,value)
 {
     return Math.sqrt((point.x-value.x)*(point.x-value.x)+(point.y-value.y)*(point.y-value.y))
+}
+
+function interpolate(destObj,start,end)
+{
+    let t=0;
+    clearInterval(destObj.interval)
+    destObj.interval=setInterval(()=>{
+        t+=0.05
+        if(t>1)
+        {
+            clearInterval(destObj.interval)
+            destObj.interval=undefined
+            // destObj.vx=0
+            // destObj.vy=0
+            return
+        }
+        destObj.x=start.x+(end.x-start.x)*t
+        destObj.y=start.y+(end.y-start.y)*t
+    },.0001)
 }

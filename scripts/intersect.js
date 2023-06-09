@@ -1,6 +1,5 @@
 const observer= new IntersectionObserver(entries=>
 {
-    console.log(entries)
     entries.forEach(entry=>{
         entry.target.classList.toggle("drop_down_anim",entry.isIntersecting)
     })
