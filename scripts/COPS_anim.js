@@ -9,6 +9,7 @@ window.addEventListener("resize",function()
 })
 const BLOCK_SIZE=160
 const N_PTS=150
+const COUPLING_RADIUS=100
 let w=canvas.width=window.innerWidth+100
 let h=canvas.height=window.innerHeight
 class Point
@@ -81,9 +82,10 @@ function painter()
                     {
                         //check if distance is less than 100
                         
-                        if(dist(point,value)>100)
+                        if(dist(point,value)>COUPLING_RADIUS)
                         return
-                        g.strokeStyle="#999"
+                        let shade=255-222*dist(point,value)/100
+                        g.strokeStyle=`rgb(${shade},${shade},${shade})`
                         
                         g.beginPath()
                         g.moveTo(point.x,point.y)
@@ -128,7 +130,7 @@ function updatePoints()
         //results of some vector math i did
         let a=Math.pow(point.vx,2)+Math.pow(point.vy,2)
         let b=2* (  point.vx*(point.x-mouseloc.x)  +  point.vy*(point.y-mouseloc.y)  )
-        let c=-Math.pow(100,2)
+        let c=-Math.pow(COUPLING_RADIUS,2)
         let r1=(-b+Math.pow(b*b-4*a*c,0.5))/(2*a)
         let r2=(-b-Math.pow(b*b-4*a*c,0.5))/(2*a)
         let r
@@ -136,7 +138,7 @@ function updatePoints()
         r=r1
         else
         r=r2
-        if(dist(mouseloc,point)<100)
+        if(dist(mouseloc,point)<COUPLING_RADIUS)
         {
 
             point.x=point.x+r*point.vx
