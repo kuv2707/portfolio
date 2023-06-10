@@ -10,7 +10,7 @@ window.addEventListener("resize",function()
     h=canvas.height=window.innerHeight
 })
 const BLOCK_SIZE=160
-const N_PTS=100
+const N_PTS=150
 const COUPLING_RADIUS=100
 let w=canvas.width=window.innerWidth+100
 let h=canvas.height=window.innerHeight
