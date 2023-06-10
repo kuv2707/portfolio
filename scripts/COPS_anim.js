@@ -10,7 +10,7 @@ window.addEventListener("resize",function()
     h=canvas.height=window.innerHeight
 })
 const BLOCK_SIZE=160
-const N_PTS=150
+const N_PTS=250
 const COUPLING_RADIUS=100
 let w=canvas.width=window.innerWidth+100
 let h=canvas.height=window.innerHeight
@@ -40,9 +40,14 @@ function addPt(xc=Math.random()*w,yc=Math.random()*h)
     points.push(new Point(xc,yc,Math.random()*2*MAXVEL-MAXVEL,Math.random()*2*MAXVEL-MAXVEL,2*Math.random()+1))
 }
 const MAXVEL=1
-for(let i=0;i<N_PTS;i++)
-{
-    addPt()
+window.onload=()=>{
+
+    let k=setInterval(()=>{
+        //addPt(window.innerWidth/3,window.innerHeight/2)
+        addPt(window.innerWidth/1.5,window.innerHeight/2)
+        if(points.length>N_PTS)
+        clearInterval(k)
+    },10)
 }
 
 const mainHandler=(e)=>addPt(e.offsetX,e.offsetY)
