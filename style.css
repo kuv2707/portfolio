@@ -85,7 +85,7 @@ body
     padding-left:5rem;
     padding-bottom:8rem;
     border-radius: 10px;
-    background-color: #88888833;
+    background-color: #00000033;
     width:580px;
 }
 h1
@@ -208,7 +208,28 @@ section
 .tech_stacks
 {
     min-height: var(--techStackHt);
+    background-color: #181b23;
+
     
+}
+.custom-shape-divider-top-1686499621 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1686499621 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 89px;
+}
+
+.custom-shape-divider-top-1686499621 .shape-fill {
+    fill: #212121;
 }
 .tech_stack_container_fut
 {
@@ -392,8 +413,13 @@ h1
     transition: transform 200ms ease-in-out;
     animation: wobble 12s linear infinite;
 }
+.col_darkgrey
+{
+    background-color: #161616;
+}
 .blob_anim
 {
+    
     animation: wobble 12s ease-in-out infinite;
 }
 @keyframes wobble
@@ -426,9 +452,7 @@ h1
     border-radius: 3px;
     backdrop-filter: blur(4px);
 }
-#reach_me::-webkit-scrollbar-thumb {
-    background-color: #084444;
-}
+
 .social
 {
     width: 10rem;
@@ -447,10 +471,7 @@ h1
 #section_social
 {
     min-height: 300px;
-    background-image: url("./Images/layered-waves-haikei.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    
 }
 
 .anim
