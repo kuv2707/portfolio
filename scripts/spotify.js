@@ -54,7 +54,7 @@ if(!code)
             code_challenge: codeChallenge
         });
     
-        window.location = 'https://accounts.spotify.com/authorize?' + args;
+        // window.location = 'https://accounts.spotify.com/authorize?' + args;
     })
 
 }
