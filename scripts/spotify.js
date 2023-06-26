@@ -27,7 +27,7 @@ async function generateCodeChallenge(codeVerifier)
 }
 
 const clientId = "5fe2644f61214899bdf2b0dc2f20234a"
-const redirectUri = "kuv2707.github.io/portfolio";
+const redirectUri = "https://kuv2707.github.io/portfolio/";
 console.log(redirectUri)
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
