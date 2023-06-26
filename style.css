@@ -481,3 +481,25 @@ h1
     margin-top: -100px;
     position: absolute;
 }
+
+.spotify_entry
+{
+    animation: wobble 12s linear infinite;
+    padding: 80px;
+    background-color: black;
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
+}
+.spotify_entry:hover
+{
+    transform: scale(1.1);
+}
+.wrapper_spotify_content
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}
