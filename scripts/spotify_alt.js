@@ -27,7 +27,7 @@ async function generateCodeChallenge(codeVerifier)
 }
 
 const clientId = "5fe2644f61214899bdf2b0dc2f20234a"
-const redirectUri = window.location.origin
+const redirectUri = window.location.origin.toString()
 console.log(redirectUri)
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
@@ -54,7 +54,7 @@ if(!code)
             code_challenge: codeChallenge
         });
     
-        // window.location = 'https://accounts.spotify.com/authorize?' + args;
+        window.location = 'https://accounts.spotify.com/authorize?' + args;
     })
 
 }
@@ -109,6 +109,7 @@ function getAlbum(data)
     
   }).then(res=>res.json())
   .then(data=>{
+    console.log(data)
     let k=document.querySelector("#link_album")
     k.querySelector("#title").innerHTML=data.name
     console.log(data.artists)
@@ -135,8 +136,8 @@ function getShow(data)
     
   }).then(res=>res.json()).then(data=>{
     let k=document.querySelector("#link_show")
-    k.querySelector("#title").innerHTML=data.name
     console.log(data)
+    k.querySelector("#title").innerHTML=data.name
     k.querySelector("#artist").innerHTML=data.publisher
     k.querySelector("#cover").src=data.images[0].url
     k.querySelector("#cover").style.width="300px"
