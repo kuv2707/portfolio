@@ -27,7 +27,7 @@ async function generateCodeChallenge(codeVerifier)
 }
 
 const clientId = "5fe2644f61214899bdf2b0dc2f20234a"
-const redirectUri = window.location.origin.toString()
+const redirectUri = window.location.origin.toString()+""
 console.log(redirectUri)
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
