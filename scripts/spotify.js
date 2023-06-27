@@ -26,13 +26,26 @@ async function generateCodeChallenge(codeVerifier)
     return base64encode(digest);
 }
 
+
+
+let albs=["1BUb9ayIoyy6T3iwMscDts","43mAHKPa4iB2er88lxD9Q8"]
+let alb=albs[Math.floor(Math.random()*albs.length)]
+let shows=["00h8GrMQbmSAfiNWYPLvhx","0sGGLIDnnijRPLef7InllD"]
+
 const clientId = "5fe2644f61214899bdf2b0dc2f20234a"
 const redirectUri = "https://kuv2707.github.io/portfolio/";
+// const redirectUri = "http://localhost:5500/";
 console.log(redirectUri)
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-
-if(!code)
+const token = localStorage.getItem("access_token");
+if(!(!token || token == "undefined"))
+{
+    getAlbum(token)
+    getShow(token)
+    followSetup()
+}
+else if(!code)
 {
     let codeVerifier = generateRandomString(128);
     localStorage.setItem('code_verifier', codeVerifier);
@@ -40,7 +53,7 @@ if(!code)
     generateCodeChallenge(codeVerifier).then(codeChallenge =>
     {
         let state = generateRandomString(16);
-        let scope = 'user-read-private user-read-email';
+        let scope = 'user-read-private user-read-email user-follow-modify';
     
         localStorage.setItem('code_verifier', codeVerifier);
     
@@ -61,6 +74,7 @@ if(!code)
 else
 {
     console.log("got code", code)
+    localStorage.setItem('code', code);
     let codeVerifier = localStorage.getItem('code_verifier');
     let args = new URLSearchParams({
         grant_type: 'authorization_code',
@@ -77,9 +91,11 @@ else
         body: args
     }).then(res => res.json())
     .then(data => {
-        // fetchProfile(data.access_token).then(profile => console.log(profile))
-        getAlbum(data)
-        getShow(data)
+        console.log("exchanged code for token",data.access_token)
+        localStorage.setItem('access_token', data.access_token);
+        getAlbum(data.access_token)
+        getShow(data.access_token)
+        followSetup()
     })
 
 }
@@ -87,6 +103,8 @@ else
 async function fetchProfile(token) {
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
+    }).catch(err=>{
+        console.log(err)
     });
 
     return await result.json();
@@ -94,17 +112,15 @@ async function fetchProfile(token) {
 
 
 
-let albs=["1BUb9ayIoyy6T3iwMscDts","43mAHKPa4iB2er88lxD9Q8"]
-let alb=albs[Math.floor(Math.random()*albs.length)]
 
-function getAlbum(data)
+function getAlbum(access_token)
 {
   fetch("https://api.spotify.com/v1/albums/"+alb,{
-    authorization:"Bearer "+data.access_token,
+    authorization:"Bearer "+access_token,
     method:"GET",
     headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer '+data.access_token
+        'Authorization': 'Bearer '+access_token
       },
     
   }).then(res=>res.json())
@@ -123,15 +139,15 @@ function getAlbum(data)
   })
 }
 
-let shows=["00h8GrMQbmSAfiNWYPLvhx","0sGGLIDnnijRPLef7InllD"]
-function getShow(data)
+
+function getShow(access_token)
 {
     fetch("https://api.spotify.com/v1/shows/"+shows[Math.floor(Math.random()*shows.length)]+"?market=US",{
-    authorization:"Bearer "+data.access_token,
+    authorization:"Bearer "+access_token,
     method:"GET",
     headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer '+data.access_token
+        'Authorization': 'Bearer '+access_token
       },
     
   }).then(res=>res.json()).then(data=>{
@@ -146,3 +162,52 @@ function getShow(data)
     k.href=data.external_urls.spotify
     })
 }
+
+function followSetup()
+{
+    let my_id="d658z0hizvq68jq71dem1iwtr"
+
+    let follow=document.querySelector("#follow_spotify")
+    
+    fetch(`https://api.spotify.com/v1/me/following/contains?type=user&ids=${my_id}`,{
+        headers:{
+            'Authorization': 'Bearer '+token
+        }
+    }).then(k=>{console.log(k);return k.json()})
+    .then(data=>{
+        console.log("contains ",data)
+        if(data[0])
+        {
+            follow.innerHTML="Following"
+            follow.style.backgroundColor="grey"
+        }
+        else
+        {
+            follow.addEventListener("click",()=>{
+                let params=new URLSearchParams()
+                params.append("type","user")
+                params.append("ids",my_id)
+                let token=localStorage.getItem("access_token")
+                console.log(token)
+                fetch("https://api.spotify.com/v1/me/following?"+params,{
+                    method:"PUT",
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+token
+                    },
+                    
+                }).then(data=>{
+                    if(data.status==204)
+                    {
+                        follow.innerHTML="Following"
+                        follow.style.backgroundColor="grey"
+                    }
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+            })
+        }
+    })
+}
+
